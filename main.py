@@ -1,4 +1,5 @@
 from util.HtmlCrawler import HtmlCrawler
+from util.TextFilter import TextFilter
 
 url = 'https://es.wiktionary.org/wiki/Ap%C3%A9ndice:1000_palabras_b%C3%A1sicas_en_espa%C3%B1ol'
 
@@ -15,6 +16,10 @@ for s in sections:
     lines_section = s.text.splitlines()
     for line in lines_section:
         list_lines.append(line)
+
+print(f"list_lines: {len(list_lines)}")
+
+list_lines = TextFilter.remove_of_list_if_item_contains(list_lines, "[editar]")
 
 print(f"list_lines: {len(list_lines)}")
 
