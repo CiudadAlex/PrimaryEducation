@@ -7,16 +7,17 @@ html_tag = soup.find(id="bodyContent")
 html_tag = html_tag.find(id="mw-content-text")
 
 sections = html_tag.find_all('section')
+sections = sections[1:]
 
-list_ul = []
+list_lines = []
 
 for s in sections:
-    ul = s.find_all('ul')
-    if len(ul) > 0:
-        list_ul.append(ul)
+    lines_section = s.text.splitlines()
+    for line in lines_section:
+        list_lines.append(line)
 
-for ul in list_ul:
-    print("###############################################")
-    print(str(ul))
-    print("###############################################")
+print(f"list_lines: {len(list_lines)}")
+
+for line in list_lines:
+    print(line)
 
