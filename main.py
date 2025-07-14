@@ -8,6 +8,15 @@ html_tag = html_tag.find(id="mw-content-text")
 
 sections = html_tag.find_all('section')
 
+list_ul = []
+
 for s in sections:
-    print(s.text)
+    ul = s.find_all('ul')
+    if len(ul) > 0:
+        list_ul.append(ul)
+
+for ul in list_ul:
+    print("###############################################")
+    print(str(ul))
+    print("###############################################")
 
