@@ -27,6 +27,14 @@ list_lines = TextFilter.truncate_text_of_list(list_lines, ",")
 
 print(f"list_lines: {len(list_lines)}")
 
+list_lines = TextFilter.remove_of_list_if_text_is_short(list_lines, 5)
+
+print(f"list_lines: {len(list_lines)}")
+
+list_lines = TextFilter.remove_of_list_if_item_contains(list_lines, " ")
+
+print(f"list_lines: {len(list_lines)}")
+
 for line in list_lines:
     print(line)
 

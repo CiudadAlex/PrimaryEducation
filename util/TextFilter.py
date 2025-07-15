@@ -9,7 +9,7 @@ class TextFilter:
 
         for text in list_text:
             if contained_in_item not in text:
-                list_text_return.append(text)
+                list_text_return.append(text.strip())
 
         return list_text_return
 
@@ -27,8 +27,18 @@ class TextFilter:
             else:
                 truncated_text = text
 
-            list_text_return.append(truncated_text)
+            list_text_return.append(truncated_text.strip())
 
         return list_text_return
 
+    @staticmethod
+    def remove_of_list_if_text_is_short(list_text, min_number_chars):
+
+        list_text_return = []
+
+        for text in list_text:
+            if len(text) >= min_number_chars:
+                list_text_return.append(text)
+
+        return list_text_return
 
