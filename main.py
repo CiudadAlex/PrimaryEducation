@@ -23,6 +23,10 @@ list_lines = TextFilter.remove_of_list_if_item_contains(list_lines, "[editar]")
 
 print(f"list_lines: {len(list_lines)}")
 
+list_lines = TextFilter.truncate_text_of_list(list_lines, ",")
+
+print(f"list_lines: {len(list_lines)}")
+
 for line in list_lines:
     print(line)
 
