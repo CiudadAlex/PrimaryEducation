@@ -14,7 +14,12 @@ class LLM:
 
     def execute(self, text):
         # Execute command and capture output
-        result = subprocess.run(['docker', 'model', 'run', self.model, text], capture_output=True, text=True)
+        result = subprocess.run(
+            ['docker', 'model', 'run', self.model, text],
+            capture_output=True,
+            text=True,
+            encoding='utf-8'
+        )
 
         return result.stdout
 
