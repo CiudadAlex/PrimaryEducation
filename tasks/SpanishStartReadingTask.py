@@ -13,6 +13,10 @@ class SpanishStartReadingTask:
         list_random_words = RandomLineLoader.get_random_words(Constants.CORPUS_SPANISH_BASIC_WORDS, number_of_lines=number_of_words)
         self.print_in_log("WORDS", list_random_words)
 
+        self.execute_with_list(list_random_words)
+
+    def execute_with_list(self, list_random_words):
+
         partition_words = SpanishStartReadingTask.partition_list(list_random_words, 3)
 
         for list_words in partition_words:

@@ -1,5 +1,6 @@
 from util.HtmlCrawler import HtmlCrawler
 from util.TextFilter import TextFilter
+from util.FileBuilder import FileBuilder
 from constants.Constants import Constants
 
 
@@ -42,10 +43,11 @@ class SpanishBasicWordsCrawler:
 
         print(f"list_lines: {len(list_lines)}")
 
-        content = ""
+        file_builder = FileBuilder(Constants.CORPUS_SPANISH_BASIC_WORDS)
         for line in list_lines:
-            content = content + line + "\n"
+            file_builder.append(line + "\n")
 
-        with open(Constants.CORPUS_SPANISH_BASIC_WORDS, 'w', encoding='utf-8') as file:
-            file.write(content)
+        file_builder.write_to_disk()
+
+
 
