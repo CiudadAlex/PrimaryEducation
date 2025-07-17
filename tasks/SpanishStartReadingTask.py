@@ -21,7 +21,8 @@ class SpanishStartReadingTask:
 
         for i in range(iterations):
             self.append_to_file_list_of_words_and_phrases(list_random_words)
-            list_random_words = random.sample(list_random_words, int(number_of_words / 2))
+            sample_of_previous_words = random.sample(list_random_words, int(number_of_words / 2))
+            list_random_words = self.complete_list_random_words(number_of_words, sample_of_previous_words)
 
         self.file_builder.write_to_disk()
 
