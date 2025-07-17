@@ -4,14 +4,14 @@ import random
 class RandomLineLoader:
 
     @staticmethod
-    def get_random_words(file_path, number_of_words):
+    def get_random_words(file_path, number_of_lines):
 
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 lines = f.readlines()
 
-            if len(lines) >= number_of_words:
-                random_lines = random.sample(lines, number_of_words)
+            if len(lines) >= number_of_lines:
+                random_lines = random.sample(lines, number_of_lines)
             else:
                 random_lines = lines
 
