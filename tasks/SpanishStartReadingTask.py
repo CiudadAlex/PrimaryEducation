@@ -63,6 +63,7 @@ class SpanishStartReadingTask:
         self.print_in_log("PROMPT", prompt)
 
         response = self.llm.execute(prompt)
+        response = response.replace('"', '')
 
         return response
 
