@@ -18,15 +18,15 @@ class SpanishStartReadingTask:
 
         list_random_words = RandomLineLoader.get_random_words(Constants.CORPUS_SPANISH_BASIC_WORDS, number_of_lines=number_of_words)
 
-        words_for_file = ", ".join(list_random_words)
-        self.file_builder.append(words_for_file + "\n")
-        self.print_in_log("WORDS", list_random_words)
-
-        self.execute_with_list(list_random_words)
+        self.append_to_file_list_of_words_and_phrases(list_random_words)
 
         self.file_builder.write_to_disk()
 
-    def execute_with_list(self, list_of_words):
+    def append_to_file_list_of_words_and_phrases(self, list_of_words):
+
+        words_for_file = ", ".join(list_of_words)
+        self.file_builder.append(words_for_file + "\n")
+        self.print_in_log("WORDS", list_of_words)
 
         partition_words = SpanishStartReadingTask.partition_list(list_of_words, 3)
 
