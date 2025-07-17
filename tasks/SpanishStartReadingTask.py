@@ -10,7 +10,7 @@ class SpanishStartReadingTask:
 
     def __init__(self):
 
-        str_now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        str_now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
         self.llm = LLM(model="ai/llama3.1:8B-Q4_K_M")
         self.file_builder = FileBuilder(Constants.OUTPUT_DIR + "SpanishStartReadingTask_" + str_now + ".txt")
