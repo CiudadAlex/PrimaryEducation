@@ -13,17 +13,8 @@ class LLM:
         self.model = model
 
     def execute(self, text):
-        # Ejecutar el comando y capturar la salida
-        resultado = subprocess.run(['docker', 'model', 'run', self.model, text], capture_output=True, text=True)
+        # Execute command and capture output
+        result = subprocess.run(['docker', 'model', 'run', self.model, text], capture_output=True, text=True)
 
-        # Mostrar la salida estándar
-        print("Salida estándar:")
-        print(resultado.stdout)
-
-        # Mostrar errores (si hay)
-
-        print("Errores:")
-        print(resultado.stderr)
-
-
+        return result.stdout
 

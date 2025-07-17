@@ -1,4 +1,4 @@
 from tasks.SpanishStartReadingTask import SpanishStartReadingTask
 
-
-SpanishStartReadingTask.execute()
+spanishStartReadingTask = SpanishStartReadingTask()
+spanishStartReadingTask.execute()
