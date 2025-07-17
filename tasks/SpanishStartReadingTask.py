@@ -25,8 +25,11 @@ class SpanishStartReadingTask:
     def append_to_file_list_of_words_and_phrases(self, list_of_words):
 
         words_for_file = ", ".join(list_of_words)
-        self.file_builder.append(words_for_file + "\n")
+        self.file_builder.append("Palabras:\n")
+        self.file_builder.append(words_for_file + "\n\n")
         self.print_in_log("WORDS", list_of_words)
+
+        self.file_builder.append("Frases:\n")
 
         partition_words = SpanishStartReadingTask.partition_list(list_of_words, 3)
 
@@ -34,6 +37,8 @@ class SpanishStartReadingTask:
             response = self.call_llm(list_words)
             self.file_builder.append(response + "\n")
             self.print_in_log("RESPONSE", response)
+
+        self.file_builder.append("############################################\n\n")
 
     def call_llm(self, list_words):
 
