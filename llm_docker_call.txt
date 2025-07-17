@@ -5,3 +5,6 @@ docker model pull ai/llama3.1:8B-Q4_K_M
 # Execute the LLM docker image
 docker model run ai/llama3.1:8B-Q4_K_M "what is a black hole"
 
+# Execute the LLM docker image in spanish
+docker model run ai/llama3.1:8B-Q4_K_M "crea una frase en la que uses las palabras: 'casa', 'coche' y 'rojo'"
+
