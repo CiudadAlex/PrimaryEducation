@@ -1,4 +1,5 @@
-from crawlers.SpanishBasicWordsCrawler import SpanishBasicWordsCrawler
+from ai.llm.LLM import LLM
 
-SpanishBasicWordsCrawler.execute()
+llm = LLM(model="ai/llama3.1:8B-Q4_K_M")
+llm.execute("hola como estas?")
 
