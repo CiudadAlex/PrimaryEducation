@@ -15,7 +15,12 @@ class RandomLineLoader:
             else:
                 random_lines = lines
 
-            return random_lines
+            returned_lines = []
+
+            for line in random_lines:
+                returned_lines.append(line.strip())
+
+            return returned_lines
 
         except FileNotFoundError:
             print(f"❌ The file '{file_path}' was not found.")
