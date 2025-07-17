@@ -8,7 +8,7 @@ class SpanishStartReadingTask:
     def __init__(self):
         self.llm = LLM(model="ai/llama3.1:8B-Q4_K_M")
 
-    def execute(self, number_of_words=10):
+    def execute(self, number_of_words=12):
 
         list_random_words = RandomLineLoader.get_random_words(Constants.CORPUS_SPANISH_BASIC_WORDS, number_of_lines=number_of_words)
         self.print_in_log("WORDS", list_random_words)
@@ -21,7 +21,7 @@ class SpanishStartReadingTask:
 
     def call_llm(self, list_words):
 
-        prompt = "Crea una frase no muy larga usando lenguaje sencillo que puedan entender un niño de primaria y en la que uses las palabras:"
+        prompt = "Crea una frase lo más corta posible usando lenguaje sencillo que pueda entender un niño de primaria y en la que uses las palabras exactas:"
 
         for word in list_words:
             prompt = prompt + " '" + word + "',"
