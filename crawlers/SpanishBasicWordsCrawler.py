@@ -1,5 +1,6 @@
 from util.HtmlCrawler import HtmlCrawler
 from util.TextFilter import TextFilter
+from constants.Constants import Constants
 
 
 class SpanishBasicWordsCrawler:
@@ -45,6 +46,6 @@ class SpanishBasicWordsCrawler:
         for line in list_lines:
             content = content + line + "\n"
 
-        with open('./corpus/SpanishBasicWords.txt', 'w', encoding='utf-8') as file:
+        with open(Constants.CORPUS_SPANISH_BASIC_WORDS, 'w', encoding='utf-8') as file:
             file.write(content)
 
