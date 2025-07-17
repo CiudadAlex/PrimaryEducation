@@ -1,7 +1,7 @@
 import random
 
 
-class RandomWordLoader:
+class RandomLineLoader:
 
     @staticmethod
     def get_random_words(file_path, number_of_words):
@@ -15,8 +15,7 @@ class RandomWordLoader:
             else:
                 random_lines = lines
 
-            for line in random_lines:
-                print(line.strip())
+            return random_lines
 
         except FileNotFoundError:
             print(f"❌ The file '{file_path}' was not found.")
