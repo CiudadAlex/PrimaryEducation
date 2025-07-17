@@ -3,6 +3,7 @@ from util.RandomLineLoader import RandomLineLoader
 from constants.Constants import Constants
 from util.FileBuilder import FileBuilder
 from datetime import datetime
+import random
 
 
 class SpanishStartReadingTask:
@@ -14,13 +15,24 @@ class SpanishStartReadingTask:
         self.llm = LLM(model="ai/llama3.1:8B-Q4_K_M")
         self.file_builder = FileBuilder(Constants.OUTPUT_DIR + "SpanishStartReadingTask_" + str_now + ".txt")
 
-    def execute(self, number_of_words=12):
+    def execute(self, number_of_words=12, iterations=3):
 
-        list_random_words = RandomLineLoader.get_random_words(Constants.CORPUS_SPANISH_BASIC_WORDS, number_of_lines=number_of_words)
+        list_random_words = self.complete_list_random_words(number_of_words, [])
 
-        self.append_to_file_list_of_words_and_phrases(list_random_words)
+        for i in range(iterations):
+            self.append_to_file_list_of_words_and_phrases(list_random_words)
+            list_random_words = random.sample(list_random_words, int(number_of_words / 2))
 
         self.file_builder.write_to_disk()
+
+    def complete_list_random_words(self, number_of_words, list_previous_words):
+
+        needed_number_of_words = number_of_words - len(list_previous_words)
+        list_new_random_words = RandomLineLoader.get_random_words(Constants.CORPUS_SPANISH_BASIC_WORDS, number_of_lines=needed_number_of_words)
+        completed_list = list_previous_words + list_new_random_words
+
+        random.shuffle(completed_list)
+        return completed_list
 
     def append_to_file_list_of_words_and_phrases(self, list_of_words):
 
