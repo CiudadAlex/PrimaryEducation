@@ -1,26 +1,38 @@
 from ai.llm.LLM import LLM
 from util.RandomLineLoader import RandomLineLoader
 from constants.Constants import Constants
+from util.FileBuilder import FileBuilder
+from datetime import datetime
 
 
 class SpanishStartReadingTask:
 
     def __init__(self):
+
+        str_now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+
         self.llm = LLM(model="ai/llama3.1:8B-Q4_K_M")
+        self.file_builder = FileBuilder(Constants.OUTPUT_DIR + "SpanishStartReadingTask_" + str_now + ".txt")
 
     def execute(self, number_of_words=12):
 
         list_random_words = RandomLineLoader.get_random_words(Constants.CORPUS_SPANISH_BASIC_WORDS, number_of_lines=number_of_words)
+
+        words_for_file = ", ".join(list_random_words)
+        self.file_builder.append(words_for_file + "\n")
         self.print_in_log("WORDS", list_random_words)
 
         self.execute_with_list(list_random_words)
 
-    def execute_with_list(self, list_random_words):
+        self.file_builder.write_to_disk()
 
-        partition_words = SpanishStartReadingTask.partition_list(list_random_words, 3)
+    def execute_with_list(self, list_of_words):
+
+        partition_words = SpanishStartReadingTask.partition_list(list_of_words, 3)
 
         for list_words in partition_words:
             response = self.call_llm(list_words)
+            self.file_builder.append(response + "\n")
             self.print_in_log("RESPONSE", response)
 
     def call_llm(self, list_words):
